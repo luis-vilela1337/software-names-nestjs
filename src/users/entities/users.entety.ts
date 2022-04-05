@@ -24,14 +24,14 @@ export class User extends BaseEntity {
   name: string;
 
   @Column()
+  email: string;
+
+  @Column()
   @Exclude()
   password: string;
 
   @Column()
   phone: string;
-
-  @Column()
-  city: string;
 
   @Column({
     type: 'enum',
