@@ -4,7 +4,7 @@ import BCryptHashProvider from 'src/providers/hashProvider';
 import { Not, Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { FindUserDto } from './dto/find-user.dto';
-import { User, UserFunction } from './entities/users.entety';
+import { User, UserFunction } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {

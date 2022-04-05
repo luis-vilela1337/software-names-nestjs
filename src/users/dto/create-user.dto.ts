@@ -5,7 +5,7 @@ import {
   IsNotEmpty,
   IsString,
 } from 'class-validator';
-import { UserFunction } from '../entities/users.entety';
+import { UserFunction } from '../entities/user.entity';
 
 export class CreateUserDto {
   /**
