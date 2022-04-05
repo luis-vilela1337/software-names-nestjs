@@ -37,3 +37,11 @@ export class UsersController {
     const loggedUser = request.user.id;
     return this.usersService.findOne(loggedUser, { id });
   }
+
+  @ApiBearerAuth()
+  @Get()
+  findAll(@Req() request: any) {
+    const loggedUser = request.user.id;
+    return this.usersService.findAll(loggedUser);
+  }
+}
