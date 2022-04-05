@@ -44,20 +44,6 @@ export class CreateUserDto {
   whatsapp: string;
 
   /**
-   * @example Brasília
-   */
-  @IsString()
-  @IsNotEmpty()
-  city: string;
-
-  /**
-   * @example true
-   */
-  @IsBoolean()
-  @IsNotEmpty()
-  status: boolean;
-
-  /**
    * @example user
    */
   @IsEnum(UserFunction)
