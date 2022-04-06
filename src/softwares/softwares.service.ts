@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
 import { CreateSoftwaresDto } from './dto/create-softwares.dto';
+import { DeleteSoftwareDto } from './dto/delete-software.dto';
 import { Software } from './entities/software.entety';
 
 @Injectable()
@@ -47,5 +48,17 @@ export class SoftwareService {
     userSoftwares.map((el) => delete el.user);
 
     return userSoftwares;
+  }
+  async remove(loggedUserId: string, deleteSoftwareDto: DeleteSoftwareDto) {
+    const software = await this.softwareRepository.findOne({
+      where: {
+        id: deleteSoftwareDto.id,
+      },
+    });
+
+    if (software.user.id !== deleteSoftwareDto.id) {
+      throw new HttpException('You dont have permission for delete this', 403);
+    }
+    await this.softwareRepository.delete(deleteSoftwareDto.id);
   }
 }
