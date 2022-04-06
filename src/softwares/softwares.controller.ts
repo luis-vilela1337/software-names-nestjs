@@ -2,15 +2,18 @@ import {
   Body,
   ClassSerializerInterceptor,
   Controller,
+  Delete,
   Get,
+  HttpCode,
   Post,
   Req,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiNoContentResponse, ApiTags } from '@nestjs/swagger';
 import { AuthMiddleware } from 'src/middleware/auth';
 import { CreateSoftwaresDto } from './dto/create-softwares.dto';
+import { DeleteSoftwareDto } from './dto/delete-software.dto';
 import { SoftwareService } from './softwares.service';
 
 @ApiTags('Software routes')
@@ -29,9 +32,20 @@ export class SoftwaresController {
 
   @ApiBearerAuth()
   @UseGuards(AuthMiddleware)
+  @HttpCode(201)
   @Get('/tools')
   find(@Req() request: any) {
     const loggedUserId = request.user.id;
     return this.softwareService.findAll(loggedUserId);
+  }
+
+  @ApiBearerAuth()
+  @ApiNoContentResponse({ status: 200, description: 'Ok' })
+  @UseGuards(AuthMiddleware)
+  @HttpCode(200)
+  @Delete()
+  remove(@Req() request: any, @Body() deleteSoftwareDto: DeleteSoftwareDto) {
+    const loggedUserId = request.user.id;
+    return this.softwareService.remove(loggedUserId, deleteSoftwareDto);
   }
 }
