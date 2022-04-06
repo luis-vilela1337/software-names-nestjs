@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
@@ -28,5 +28,24 @@ export class SoftwareService {
     softwares.user = user;
 
     return this.softwareRepository.save(softwares);
+  }
+
+  async findAll(loggedUserId: string) {
+    const userSoftwares = await this.softwareRepository.find({
+      where: {
+        user: loggedUserId,
+      },
+    });
+
+    if (!userSoftwares.length) {
+      throw new HttpException(
+        'You dont have any software ',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    userSoftwares.map((el) => delete el.user);
+
+    return userSoftwares;
   }
 }
