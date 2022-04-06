@@ -4,6 +4,7 @@ import { getConnectionOptions } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SessionModule } from './session/session.module';
+import { SoftwareModule } from './softwares/softwares.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -16,6 +17,7 @@ import { UsersModule } from './users/users.module';
     }),
     UsersModule,
     SessionModule,
+    SoftwareModule,
   ],
   controllers: [AppController],
   providers: [AppService],
