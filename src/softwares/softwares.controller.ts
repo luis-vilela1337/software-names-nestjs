@@ -2,6 +2,7 @@ import {
   Body,
   ClassSerializerInterceptor,
   Controller,
+  Get,
   Post,
   Req,
   UseGuards,
@@ -20,9 +21,17 @@ export class SoftwaresController {
 
   @ApiBearerAuth()
   @UseGuards(AuthMiddleware)
-  @Post()
+  @Post('/tools')
   create(@Req() request: any, @Body() createSoftwaresDto: CreateSoftwaresDto) {
     const loggedUserId = request.user.id;
     return this.softwareService.create(loggedUserId, createSoftwaresDto);
+  }
+
+  @ApiBearerAuth()
+  @UseGuards(AuthMiddleware)
+  @Get('/tools')
+  find(@Req() request: any) {
+    const loggedUserId = request.user.id;
+    return this.softwareService.findAll(loggedUserId);
   }
 }
