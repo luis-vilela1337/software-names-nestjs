@@ -24,50 +24,51 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Nest](https://github.com/nestjs/nest) framework TypeScript for Software storing.
 
 ## Installation
 
 ```bash
-$ npm install
+$ npm install // yarn
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ npm run start
+$ yarn start
 
 # watch mode
-$ npm run start:dev
+$ yarn start:dev
 
 # production mode
-$ npm run start:prod
+$ yarn start:prod
 ```
 
-## Test
+## Run seeds
 
 ```bash
-# unit tests
-$ npm run test
 
-# e2e tests
-$ npm run test:e2e
+$ yarn seed:run
 
-# test coverage
-$ npm run test:cov
 ```
 
-## Support
+## .env
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+NODE_ENV=development
 
-## Stay in touch
+  # Database configuration
+  POSTGRES_USER=postgres
+  POSTGRES_PASSWORD=postgres
+  POSTGRES_DB_NAME=nestjs-softwares
+  POSTGRES_PORT=5482
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+  #JWT SECRET
+  SECRET_JWT=B1C7E4368DCA66C3AC061DD7C7571521B88CB4FF88A6AD6746A584A242CF82FE
 
-## License
 
-Nest is [MIT licensed](LICENSE).
+
+  TZ=UTC
+
+```
