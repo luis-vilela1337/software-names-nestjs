@@ -19,7 +19,7 @@ import { SoftwareService } from './softwares.service';
 @ApiTags('Software routes')
 @UseInterceptors(ClassSerializerInterceptor)
 @Controller('softwares')
-export class SoftwaresController {
+export class SoftwareController {
   constructor(private readonly softwareService: SoftwareService) {}
 
   @ApiBearerAuth()
@@ -43,7 +43,7 @@ export class SoftwaresController {
   @ApiNoContentResponse({ status: 200, description: 'Ok' })
   @UseGuards(AuthMiddleware)
   @HttpCode(200)
-  @Delete()
+  @Delete('/tools')
   remove(@Req() request: any, @Body() deleteSoftwareDto: DeleteSoftwareDto) {
     const loggedUserId = request.user.id;
     return this.softwareService.remove(loggedUserId, deleteSoftwareDto);

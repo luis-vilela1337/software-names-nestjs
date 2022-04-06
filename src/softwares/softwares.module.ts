@@ -4,7 +4,7 @@ import JWTProvider from 'src/providers/jwtProvider';
 
 import { User } from 'src/users/entities/user.entity';
 import { Software } from './entities/software.entety';
-import { SoftwaresController } from './softwares.controller';
+import { SoftwareController } from './softwares.controller';
 import { SoftwareService } from './softwares.service';
 
 @Module({
@@ -12,7 +12,7 @@ import { SoftwareService } from './softwares.service';
     TypeOrmModule.forFeature([Software]),
     TypeOrmModule.forFeature([User]),
   ],
-  controllers: [SoftwaresController],
+  controllers: [SoftwareController],
   providers: [SoftwareService, JWTProvider],
 })
 export class SoftwareModule {}
