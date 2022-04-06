@@ -56,7 +56,7 @@ export class SoftwareService {
       },
     });
 
-    if (software.user.id !== deleteSoftwareDto.id) {
+    if (software.user.id !== loggedUserId) {
       throw new HttpException('You dont have permission for delete this', 403);
     }
     await this.softwareRepository.delete(deleteSoftwareDto.id);
